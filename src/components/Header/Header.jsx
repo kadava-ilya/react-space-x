@@ -11,7 +11,7 @@ const Header = props => (
         />
         <nav className="main-nav nav">
             <ul className="list">
-                {props.rocketNames.map((item,index) => (
+                {props.rocketNames && props.rocketNames.map((item,index) => (
                     <li key={index} className="item">
                         <a href="/" 
                         onClick={e => {e.preventDefault(); props.changeRocket(item)}}
