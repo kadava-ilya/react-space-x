@@ -60,7 +60,7 @@ class App extends React.Component{
         {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
         {/* <Calendar /> */}
         {/* <Details/> */}
-        {this.state.company && <Footer {...this.state.company.links} />}
+        {this.state.company && <Footer {...this.state.company} />}
       </>
     );
   }
