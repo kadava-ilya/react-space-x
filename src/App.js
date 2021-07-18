@@ -18,10 +18,12 @@ class App extends React.Component{
     rocket: 'Falcon 1',
     rocketFeatures: null,
     rockets: "",
+    company: null,
   };
 
   componentDidMount(){
     this.updateRocket();
+    this.updateCompany();
   }
 
   //получаем данные по ссылке и если item.name = state.rocket,
@@ -45,6 +47,9 @@ class App extends React.Component{
     );
   }
 
+  updateCompany = () => {
+    this.fetchData.getCompany().then(data => this.setState({company:data}));
+  }
 
   render(){
     // console.log(this.state.rockets)
@@ -55,7 +60,7 @@ class App extends React.Component{
         {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
         {/* <Calendar /> */}
         {/* <Details/> */}
-        <Footer />
+        {this.state.company && <Footer {...this.state.company.links} />}
       </>
     );
   }
