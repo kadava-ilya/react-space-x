@@ -22,10 +22,6 @@ const Header = props => (
                 ))}
 
                 {/* 2:20 */}
-
-                {/* <li className="item">
-                    <a href="/" className="item-link">Updates</a>
-                </li> */}
             </ul>
         </nav>
         <nav className="secondary-nav">

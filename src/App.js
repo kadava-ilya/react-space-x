@@ -52,7 +52,7 @@ class App extends React.Component{
       <>
         <Header rocketNames = {this.state.rockets} changeRocket={this.changeRocket}/>
         <Main rocket={this.state.rocket}/>
-        <Features />
+        {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
         {/* <Calendar /> */}
         {/* <Details/> */}
         <Footer />
