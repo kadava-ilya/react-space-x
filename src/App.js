@@ -1,5 +1,6 @@
 import './style.css';
 import React from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Main from './components/Main/Main';
@@ -7,8 +8,8 @@ import Features from './components/Features/Features';
 import Footer from './components/Footer/Footer';
 import FetchData from '../src/service/FetchData';
 // import { render } from '@testing-library/react';
-// import Calendar from './components/Calendar/Calendar';
-// import Details from './components/Details/Details';
+import Calendar from './components/Calendar/Calendar';
+import Details from './components/Details/Details';
 
 class App extends React.Component{
 
@@ -55,15 +56,29 @@ class App extends React.Component{
   render(){
     // console.log(this.state.rockets)
     return (
-      <>
+      <BrowserRouter>
         <Header rocketNames = {this.state.rockets} changeRocket={this.changeRocket}/>
-        {this.state.company && <Home company={this.state.company}/> }
-        {/* <Main rocket={this.state.rocket}/> */}
-        {/* {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>} */}
-        {/* <Calendar /> */}
-        {/* <Details/> */}
+        
+        <Route path="/" exact>
+          {this.state.company && <Home company={this.state.company}/> }
+        </Route>
+
+        <Route path='/rocket'>
+          <Main rocket={this.state.rocket}/>
+          {this.state.rocketFeatures && <Features {...this.state.rocketFeatures}/>}
+        </Route>
+
+        <Route path='/calendar'>
+          <Main />
+          <Calendar />
+        </Route>
+        
+        <Route path="/details">
+          <Main />
+          <Details/>
+        </Route>
         {this.state.company && <Footer {...this.state.company} />}
-      </>
+      </BrowserRouter>
     );
   }
 }
