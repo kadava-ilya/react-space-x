@@ -1,4 +1,5 @@
 import React from 'react';
+import Main from '../Main/Main';
 import './Features.css';
 import RellaxWrapper from 'react-rellax-wrapper';
 
@@ -20,6 +21,8 @@ const Features = ({
     }
 
     return (
+        <>
+            <Main rocket={name}/>
             <section className="features">
                 <h2 className="features-title">
                     {name} <br />Overview
@@ -66,6 +69,7 @@ const Features = ({
                     </article>
                 </div>
             </section>
+        </>
     );
 }
 export default Features;

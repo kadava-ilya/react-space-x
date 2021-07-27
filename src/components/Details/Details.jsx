@@ -1,33 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import YouTube from 'react-youtube';
 import './Details.css';
 import Main from '../Main/Main';
+import useLaunches from '../hooks/useLaunches';
 
 import { useHistory } from "react-router-dom";
 
 
-    const Details = () => {
-        
-        //получение предыдущего route
+    const Details = (props) => {
+
+        const [launch, setLaunch] = useState(null);
+        const {getLaunch} = useLaunches();
+
+        useEffect(() => {
+            setLaunch(getLaunch(props.match.params.id));
+        }, [getLaunch]);
+
+        console.log(launch)
+
+        //получение предыдущего route path
         let history = useHistory();
         const historyPrevPath = () => {
             history.goBack();
         }
 
+        if(!launch) return null;
+
         return (
             <>
-                <Main/>
+                <Main name={launch.name}/>
                 <main className="details">
                     <div className="container">
                         <div className="details-row">
                             <div className="details-image">
-                                <img src="https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png" alt="" />
+                                <img src={launch.links.patch.small} alt={launch.name} />
                             </div>
                             <div className="details-content">
-                                <p className="details-description">Engine failure at 33 seconds and loss of vehicle</p>
+                                <p className="details-description">{launch?.details}</p>
                             </div>
                         </div>
                         <div>
-                            <iframe className="details-youtube" width="560" height="315" src="https://www.youtube.com/embed/dLQ2tZEH6G0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+                            <YouTube className='details-youtube' videoId={launch.links.youtube_id}/>
                         </div>
                     </div>
                     <button onClick={historyPrevPath} className="button button-back">go back</button>

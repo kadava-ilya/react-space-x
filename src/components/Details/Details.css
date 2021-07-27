@@ -11,6 +11,11 @@
 	margin-bottom: 30px;
 }
 
+.details-description{
+	max-width: 500px;
+	line-height: 28px;
+}
+
 .details-image, .details-content {
 	margin: 0 30px;
 }
@@ -26,4 +31,10 @@
 	margin: 25px auto;
 	cursor: pointer;
 	background-color: #000;
+	transition: all .15s ease-in-out;
+}
+
+.button-back:hover {
+	color: #000;
+	background-color: #fff;
 }
